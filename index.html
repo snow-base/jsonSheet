@@ -50,11 +50,13 @@
     <div id="status-bar" style="width: 1px; height: 24px; background: var(--border-color); margin: 0 10px;"></div>
     <input type="file" id="json-file" style="display:none" accept=".json" onchange="importJSON(event)">
     <input type="file" id="main-sheet-json-file" style="display:none" accept=".json" onchange="importMainSheetJSON(event)">
+    <input type="file" id="full-main-sheet-json-file" style="display:none" accept=".json" onchange="importFullMainSheetJSON(event)">
     <div class="dropdown">
         <button class="dropdown-btn">파일</button>
         <div class="dropdown-content">
             <a title="프로젝트 JSON은 시트와 레이아웃·규칙·설정을 불러옵니다. 일반 데이터 JSON은 파일에 포함된 시트 데이터로 현재 데이터를 교체합니다." onclick="document.getElementById('json-file').click();"><span class="material-symbols-outlined" style="vertical-align: middle; font-size: 18px; margin-right: 5px;">file_open</span> JSON 불러오기</a>
             <a title="선택한 JSON에서 데이터만 현재 메인 시트에 적용합니다. 다른 시트와 규칙은 유지하고, 남아 있는 열 설정은 보존하며 삭제된 열의 설정과 유효하지 않은 참조는 정리합니다." onclick="document.getElementById('main-sheet-json-file').click();"><span class="material-symbols-outlined" style="vertical-align: middle; font-size: 18px; margin-right: 5px;">upload_file</span> 메인 시트 JSON 불러오기</a>
+            <a title="프로젝트 JSON에서 현재 메인 시트의 데이터와 시트별 레이아웃·서식·차트를 불러옵니다. 다른 시트와 전역 규칙·앱 설정은 유지합니다." onclick="document.getElementById('full-main-sheet-json-file').click();"><span class="material-symbols-outlined" style="vertical-align: middle; font-size: 18px; margin-right: 5px;">dataset</span> 메인 시트 전체 JSON 불러오기</a>
             <hr style="margin: 5px 0; border: 0; border-top: 1px solid var(--border-color);">
             <a onclick="downloadCurrentSheetData();"><span class="material-symbols-outlined" style="vertical-align: middle; font-size: 18px; margin-right: 5px;">description</span> 현재 시트 JSON 다운로드</a>
             <a onclick="downloadAllSheetsData();"><span class="material-symbols-outlined" style="vertical-align: middle; font-size: 18px; margin-right: 5px;">library_books</span> 전체 시트 JSON 다운로드</a>
@@ -75,7 +77,7 @@
             <a onclick="openJsonPopup('full');"><span class="material-symbols-outlined" style="vertical-align: middle; font-size: 18px; margin-right: 5px;">library_books</span> 전체 데이터 JSON</a>
         </div>
     </div>
-    <div style="margin-left: auto; display: flex; align-items: center; gap: 5px;">
+    <div class="toolbar-right-controls" style="margin-left: auto; display: flex; align-items: center; gap: 5px;">
         <div id="localization-controls" style="display:flex; align-items:center; gap:4px; flex-shrink:0;">
             <span class="material-symbols-outlined" title="표시 언어" style="font-size:17px; color:var(--text-secondary-color);">translate</span>
             <select id="localization-locale-select" aria-label="로컬라이제이션 표시 언어" onchange="setLocalizationLocale(this.value)" style="max-width:90px; height:25px; padding:2px 4px; border:1px solid var(--border-color); border-radius:4px; background:var(--bg-tertiary-color); color:var(--text-primary-color); font-size:12px;"></select>
